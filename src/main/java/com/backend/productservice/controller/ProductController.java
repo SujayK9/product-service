@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -28,6 +29,8 @@ public class ProductController {
 
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
+        product.setCreatedAt(new Date());
+        product.setLastUpdatedAt(new Date());
         return productService.saveProduct(product);
     }
 
@@ -42,6 +45,7 @@ public class ProductController {
         product.setDescription(productDetails.getDescription());
         product.setImage(productDetails.getImage());
         product.setCategory(productDetails.getCategory());
+        product.setLastUpdatedAt(new Date());
         Product updatedProduct = productService.saveProduct(product);
         return ResponseEntity.ok(updatedProduct);
     }

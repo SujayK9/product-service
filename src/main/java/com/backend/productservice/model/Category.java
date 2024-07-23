@@ -2,6 +2,7 @@ package com.backend.productservice.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,17 +14,14 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Category {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Category extends BaseModel{
 
     @Column(nullable = false)
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.REMOVE)
     @JsonManagedReference
+    @JsonIgnore
     private Set<Product> products;
 
     // Getters and setters

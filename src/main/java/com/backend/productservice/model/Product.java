@@ -14,11 +14,8 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Setter
-public class Product {
+public class Product extends BaseModel{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false)
     private String title;
