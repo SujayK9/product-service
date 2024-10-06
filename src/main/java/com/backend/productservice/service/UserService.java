@@ -71,13 +71,7 @@ private final TokenRepository tokenRepository;
     public User validateToken(String token) {
         Optional<Token> token1 = tokenRepository.findByValueAndExpiryDateGreaterThan(token, new java.sql.Date(System.currentTimeMillis()));
         if(token1.isPresent()){
-           // if(token1.get().getExpiryDate().after(new Date())){
                 return token1.get().getUser();
-//            }else {
-//                throw new IllegalArgumentException("Token expired");
-//            }
-
-           // return token1.get().getUser();
         }else {
             throw new IllegalArgumentException("Invalid/expired token");
         }

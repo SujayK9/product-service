@@ -14,8 +14,7 @@ import lombok.Builder;
 @Builder
 @Entity
 public class User extends BaseModel{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private Long userId;
     private String email;
     private String hashedPassword;
