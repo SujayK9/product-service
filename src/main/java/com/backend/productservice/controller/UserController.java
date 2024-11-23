@@ -22,7 +22,7 @@ public UserController(UserService userService) {
 }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signUp(@RequestBody SignUpRequestDto signUpRequestDto) {
+    public ResponseEntity<UserDto> signUp(@RequestBody SignUpRequestDto signUpRequestDto) {
         
      String email = signUpRequestDto.getEmail();
      String password = signUpRequestDto.getPassword();
@@ -30,7 +30,7 @@ public UserController(UserService userService) {
 
         User user = userService.signUp(fullname, email, password);
 
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(UserDto.from(user));
     }
 
     @PostMapping("/login")

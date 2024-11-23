@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,5 +20,7 @@ public class User extends BaseModel{
     private Long userId;
     private String email;
     private String hashedPassword;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
     private String fullname;
 }
